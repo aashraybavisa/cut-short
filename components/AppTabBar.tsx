@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     marginBottom: heightPx(3),
     borderRadius: 20,
     overflow: "hidden",
-    ...gStyles.shadow5,
+    // ...gStyles.shadow5,
   },
   tabContainer: {
     height: "100%",

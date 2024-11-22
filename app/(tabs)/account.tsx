@@ -26,10 +26,12 @@ const AccountTabScreen = () => {
     return (
       <View style={styles.toggleContainer}>
         <Text style={[styles.toggleText, { color: lightTextColor }]}>
-          Light
+          {"Light"}
         </Text>
         <Switch onValueChange={toggleSwitch} value={currentTheme === "dark"} />
-        <Text style={[styles.toggleText, { color: darkTextColor }]}>Dark</Text>
+        <Text style={[styles.toggleText, { color: darkTextColor }]}>
+          {"Dark"}
+        </Text>
       </View>
     );
   };
