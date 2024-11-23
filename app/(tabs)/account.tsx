@@ -37,17 +37,22 @@ const AccountTabScreen = () => {
     );
   };
   return (
-    <AppContainer>
+    <AppContainer
+      backgroundColor={Colors[currentTheme]?.background}
+      isTopSafeArea
+    >
       <AppHeader />
-      <Text
-        style={[
-          styles.toggleText,
-          { color: Colors[currentTheme].tabIconDefault },
-        ]}
-      >
-        account
-      </Text>
-      {isMobile && renderToggleAppearance()}
+      <View>
+        <Text
+          style={[
+            styles.toggleText,
+            { color: Colors[currentTheme].tabIconDefault },
+          ]}
+        >
+          account
+        </Text>
+        {isMobile && renderToggleAppearance()}
+      </View>
     </AppContainer>
   );
 };
@@ -60,7 +65,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-evenly",
     width: "90%",
-    height: "100%",
   },
   toggleText: {
     fontSize: 16,

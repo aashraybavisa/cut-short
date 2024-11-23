@@ -11,7 +11,7 @@ import { useNavigation } from "@react-navigation/native";
 import { Colors } from "@/constants/Colors";
 import gStyles from "@/constants/Styles";
 import { TabBarIcon } from "./navigation/TabBarIcon";
-import { font, widthPx } from "@/utils/Responsive";
+import { font, heightPx, widthPx } from "@/utils/Responsive";
 
 interface AppHeaderProps {
   isBackButton?: boolean;
@@ -38,13 +38,10 @@ const AppHeader: React.FC<AppHeaderProps> = (props) => {
   const textColor = Colors[colorScheme]?.tint;
   return (
     <View style={[styles.container, { backgroundColor }]}>
-      <View style={styles.emptyTopView} />
-      <View style={styles.headerView}>
-        {isBackButton && renderBackTouch()}
-        <Text style={[styles.titleText, { color: textColor }]}>
-          {title || "CutShort"}
-        </Text>
-      </View>
+      {isBackButton && renderBackTouch()}
+      <Text style={[styles.titleText, { color: textColor }]}>
+        {title || "CutShort"}
+      </Text>
     </View>
   );
 };
@@ -53,14 +50,8 @@ export default AppHeader;
 
 const styles = StyleSheet.create({
   container: {
-    height: "20%",
+    height: heightPx(8),
     width: "100%",
-  },
-  emptyTopView: {
-    height: "50%",
-  },
-  headerView: {
-    height: "50%",
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",

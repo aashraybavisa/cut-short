@@ -1,23 +1,28 @@
-import { StyleSheet } from "react-native";
 import React from "react";
+import { View, StatusBar, SafeAreaView } from "react-native";
+// relative
+import { AppContainerProps } from "@/lib/types";
 import gStyles from "@/constants/Styles";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
-const AppContainer = (props: any) => {
+const AppContainer: React.FC<AppContainerProps> = (props) => {
+  const { backgroundColor, isTopSafeArea, isBottomSafeArea, bottomColor } =
+    props;
+  const TopComponent = isTopSafeArea ? SafeAreaView : View;
+  const BottomComponent = isBottomSafeArea ? SafeAreaView : View;
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.mainContainer}>{props.children}</SafeAreaView>
-    </SafeAreaProvider>
+    <View style={gStyles.flex1}>
+      <TopComponent style={{ backgroundColor }} />
+      <StatusBar backgroundColor={backgroundColor} />
+      <View style={gStyles.flex1} children={props.children} />
+      <BottomComponent style={{ backgroundColor: bottomColor }} />
+    </View>
   );
 };
 
 export default AppContainer;
 
-const styles = StyleSheet.create({
-  mainContainer: {
-    ...gStyles.flex1,
-    ...gStyles.center,
-    width: "100%",
-    alignSelf: "center",
-  },
-});
+AppContainer.defaultProps = {
+  bottomColor: "transparent",
+  isTopSafeArea: false,
+  isBottomSafeArea: false,
+};
