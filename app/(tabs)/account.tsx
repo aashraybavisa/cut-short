@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import AppContainer from "@/components/AppContainer";
 import { Colors } from "@/constants/Colors";
 import { isMobile } from "@/utils/Responsive";
+import AppHeader from "@/components/AppHeader";
 
 const AccountTabScreen = () => {
   const [currentTheme, setCurrentTheme] = useState(
@@ -37,6 +38,7 @@ const AccountTabScreen = () => {
   };
   return (
     <AppContainer>
+      <AppHeader />
       <Text
         style={[
           styles.toggleText,
@@ -57,7 +59,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-evenly",
-    width: "100%",
+    width: "90%",
+    height: "100%",
   },
   toggleText: {
     fontSize: 16,

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     ...gStyles.flex1,
     ...gStyles.center,
-    width: "90%",
+    width: "100%",
     alignSelf: "center",
   },
 });

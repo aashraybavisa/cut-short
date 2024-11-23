@@ -1,14 +1,80 @@
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  useColorScheme,
+  View,
+} from "react-native";
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
+// components
+import { Colors } from "@/constants/Colors";
+import gStyles from "@/constants/Styles";
+import { TabBarIcon } from "./navigation/TabBarIcon";
+import { font, widthPx } from "@/utils/Responsive";
 
-const AppHeader = () => {
+interface AppHeaderProps {
+  isBackButton?: boolean;
+  title?: string;
+}
+
+const AppHeader: React.FC<AppHeaderProps> = (props) => {
+  const { isBackButton = false, title = false } = props;
+  const navigation = useNavigation();
+
+  const onPressBack = () => navigation?.goBack();
+
+  const renderBackTouch = () => {
+    const backColor = Colors[colorScheme]?.icon;
+    return (
+      <TouchableOpacity style={styles.backTouch} onPress={onPressBack}>
+        <TabBarIcon name={"chevron-back"} color={backColor} />
+      </TouchableOpacity>
+    );
+  };
+
+  const colorScheme = useColorScheme() ?? "light";
+  const backgroundColor = Colors[colorScheme]?.background;
+  const textColor = Colors[colorScheme]?.tint;
   return (
-    <View>
-      <Text>AppHeader</Text>
+    <View style={[styles.container, { backgroundColor }]}>
+      <View style={styles.emptyTopView} />
+      <View style={styles.headerView}>
+        {isBackButton && renderBackTouch()}
+        <Text style={[styles.titleText, { color: textColor }]}>
+          {title || "CutShort"}
+        </Text>
+      </View>
     </View>
   );
 };
 
 export default AppHeader;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    height: "20%",
+    width: "100%",
+  },
+  emptyTopView: {
+    height: "50%",
+  },
+  headerView: {
+    height: "50%",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+  },
+  titleText: {
+    fontSize: font(8),
+    fontWeight: "600",
+    flex: 1,
+    textAlign: "center",
+  },
+  backTouch: {
+    height: "80%",
+    aspectRatio: 1,
+    ...gStyles.center,
+    marginHorizontal: widthPx(1),
+  },
+});
