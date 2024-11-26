@@ -3,12 +3,15 @@ import React from "react";
 import { TabBarIcon } from "./navigation/TabBarIcon";
 
 const AppSearchBar = () => {
+
+  const onPressTouch = () => {}
+
   return (
     <View style={styles.container}>
       <View>
-        <TextInput value={""} />
+        <TextInput value={""} placeholder={'search nearby store'} />
       </View>
-      <Pressable>
+      <Pressable style={styles.searchTouch} onPress={onPressTouch}>
         <TabBarIcon name={"search"} />
       </Pressable>
     </View>
@@ -22,4 +25,7 @@ const styles = StyleSheet.create({
     height: "20%",
     width: "100%",
   },
+  searchTouch:{
+
+  }
 });
