@@ -5,19 +5,20 @@ import {
   useColorScheme,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { BottomTabBarProps } from "@react-navigation/bottom-tabs";
 import _ from "lodash";
-
+// components
 import { TabBarIcon } from "./navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import gStyles from "@/constants/Styles";
 import { tabList } from "@/constants/Consts";
 import { TabListItem } from "@/lib/types";
-import { heightPx } from "@/utils/Responsive";
+import { heightPx, widthPx } from "@/utils/Responsive";
 
 const AppTabBar: React.FC<BottomTabBarProps> = (props) => {
   const { state, navigation } = props;
+  const [showTitle, setShowTitle] = useState(false);
   const colorScheme = useColorScheme() ?? "light";
 
   const onPressTabItem = (item: TabListItem) => {
@@ -33,12 +34,20 @@ const AppTabBar: React.FC<BottomTabBarProps> = (props) => {
       : Colors[colorScheme].tabIconDefault;
     return (
       <TouchableOpacity
-        style={styles.tabItemTouch}
+        style={[styles.tabItemTouch, showTitle && styles.additionalTouchStyle]}
         key={`tabItem-${index}`}
         onPress={() => onPressTabItem(item)}
+        onLongPress={() => setShowTitle((t) => !t)}
       >
-        <TabBarIcon name={iconName} color={color} />
-        <Text style={[styles.tabItemText, { color }]}>{title}</Text>
+        <TabBarIcon
+          name={iconName}
+          color={color}
+          size={widthPx(showTitle ? 8 : 10)}
+          style={styles.touchIcon}
+        />
+        {showTitle && (
+          <Text style={[styles.tabItemText, { color }]}>{title}</Text>
+        )}
       </TouchableOpacity>
     );
   };
@@ -70,13 +79,23 @@ const styles = StyleSheet.create({
     height: "100%",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly",
+    justifyContent: "space-evenly"
   },
   tabItemTouch: {
     ...gStyles.center,
     paddingHorizontal: "3%",
     paddingVertical: "2%",
+    marginHorizontal: "1%",
+    marginVertical: "2%",
     borderRadius: 15,
+    flex: 1,
+  },
+  additionalTouchStyle: {
+    marginHorizontal: "0%",
+    marginVertical: "0%",
+  },
+  touchIcon: {
+    flex: 1,
   },
   tabItemText: {
     marginTop: "10%",

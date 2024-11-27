@@ -1,15 +1,22 @@
 import { Pressable, StyleSheet, TextInput, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { TabBarIcon } from "./navigation/TabBarIcon";
 
 const AppSearchBar = () => {
+  const [searchText, setSearchText] = useState("");
 
-  const onPressTouch = () => {}
+  const onPressTouch = () => {};
 
   return (
     <View style={styles.container}>
-      <View>
-        <TextInput value={""} placeholder={'search nearby store'} />
+      <View style={styles.searchInputView}>
+        <TextInput
+          value={searchText}
+          placeholder={"search nearby store"}
+          onChangeText={(t) => setSearchText(t)}
+          onSubmitEditing={onPressTouch}
+          style={styles.searchTextInput}
+        />
       </View>
       <Pressable style={styles.searchTouch} onPress={onPressTouch}>
         <TabBarIcon name={"search"} />
@@ -25,7 +32,7 @@ const styles = StyleSheet.create({
     height: "20%",
     width: "100%",
   },
-  searchTouch:{
-
-  }
+  searchTouch: {},
+  searchInputView: {},
+  searchTextInput: {},
 });
