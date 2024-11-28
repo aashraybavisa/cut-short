@@ -5,7 +5,9 @@ import { TabBarIcon } from "./navigation/TabBarIcon";
 const AppSearchBar = () => {
   const [searchText, setSearchText] = useState("");
 
-  const onPressTouch = () => {};
+  const onPressTouch = () => {
+    // search api call
+  };
 
   return (
     <View style={styles.container}>
