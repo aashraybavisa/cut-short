@@ -1,5 +1,6 @@
 import { moderateScale } from "@/utils/Responsive";
 import { StyleSheet } from "react-native";
+import { Colors } from "./Colors";
 
 const gStyles = StyleSheet.create({
   flex1: { flex: 1 },
@@ -10,6 +11,9 @@ const gStyles = StyleSheet.create({
       height: moderateScale(5),
       width: moderateScale(5),
     },
+  },
+  border: {
+    borderColor: Colors["light"]?.tabIconDefault,
   },
 });
 

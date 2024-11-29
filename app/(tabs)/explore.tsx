@@ -1,15 +1,20 @@
-import { StyleSheet, Text } from 'react-native'
-import React from 'react'
-import AppContainer from '@/components/AppContainer'
+import { StyleSheet, Text, useColorScheme } from "react-native";
+import React from "react";
+import AppContainer from "@/components/AppContainer";
+import { Colors } from "@/constants/Colors";
 
 const ExploreTabScreen = () => {
+  const colorScheme = useColorScheme() ?? "light";
   return (
-    <AppContainer>
+    <AppContainer
+      backgroundColor={Colors[colorScheme]?.background}
+      isTopSafeArea
+    >
       <Text>ExploreTabScreen</Text>
     </AppContainer>
-  )
-}
+  );
+};
 
-export default ExploreTabScreen
+export default ExploreTabScreen;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
