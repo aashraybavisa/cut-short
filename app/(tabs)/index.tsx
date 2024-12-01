@@ -1,10 +1,16 @@
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, useColorScheme } from "react-native";
 import React from "react";
+//
 import AppContainer from "@/components/AppContainer";
+import { Colors } from "@/constants/Colors";
 
 const HomeTabScreen = () => {
+  const colorScheme = useColorScheme() ?? "light";
   return (
-    <AppContainer>
+    <AppContainer
+      backgroundColor={Colors[colorScheme]?.background}
+      isTopSafeArea
+    >
       <Text>HomeTabScreen</Text>
     </AppContainer>
   );
