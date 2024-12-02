@@ -21,9 +21,8 @@ const AppTabBar: React.FC<BottomTabBarProps> = (props) => {
   const [showTitle, setShowTitle] = useState(false);
   const colorScheme = useColorScheme() ?? "light";
 
-  const onPressTabItem = (item: TabListItem) => {
+  const onPressTabItem = (item: TabListItem) =>
     navigation.navigate(item?.routeName);
-  };
 
   const renderTabItem = (item: TabListItem, index: number) => {
     const { activeIconName, blurIconName, title } = item;
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
     height: "100%",
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-evenly"
+    justifyContent: "space-evenly",
   },
   tabItemTouch: {
     ...gStyles.center,
