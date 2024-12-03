@@ -27,4 +27,9 @@ export const tabList: TabListItem[] = [
   },
 ];
 
-export default { tabList };
+export const themes = {
+  light: "light",
+  dark: "dark",
+};
+
+export default { tabList, themes };

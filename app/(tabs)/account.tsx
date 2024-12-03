@@ -4,13 +4,14 @@ import AppContainer from "@/components/AppContainer";
 import { Colors } from "@/constants/Colors";
 import { isMobile } from "@/utils/Responsive";
 import AppHeader from "@/components/AppHeader";
+import { themes } from "@/constants/Consts";
 
 const AccountTabScreen = () => {
   const [currentTheme, setCurrentTheme] = useState(
-    Appearance.getColorScheme() ?? "light"
+    Appearance.getColorScheme() ?? themes.light
   );
   const toggleSwitch = () => {
-    const newTheme = currentTheme === "light" ? "dark" : "light";
+    const newTheme = currentTheme === themes.light ? themes.dark : themes.light;
     Appearance.setColorScheme(newTheme);
     setCurrentTheme(newTheme);
   };

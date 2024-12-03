@@ -4,17 +4,21 @@ import _ from "lodash";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { tabList } from "@/constants/Consts";
+import { tabList, themes } from "@/constants/Consts";
 import AppTabBar from "@/components/AppTabBar";
 
 const TabLayout = () => {
-  const colorScheme = useColorScheme() ?? "light";
+  const colorScheme = useColorScheme() ?? themes.light;
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
         headerShown: false,
-        tabBarStyle: { backgroundColor: Colors[colorScheme].background,  borderTopLeftRadius: 20, marginLeft: 10 },
+        tabBarStyle: {
+          backgroundColor: Colors[colorScheme].background,
+          borderTopLeftRadius: 20,
+          marginLeft: 10,
+        },
       }}
       tabBar={(props) => <AppTabBar {...props} />}
     >
