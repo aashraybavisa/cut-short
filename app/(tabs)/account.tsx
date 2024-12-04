@@ -1,4 +1,11 @@
-import { StyleSheet, Switch, Text, Appearance, View } from "react-native";
+import {
+  StyleSheet,
+  Switch,
+  Text,
+  Appearance,
+  View,
+  ColorSchemeName,
+} from "react-native";
 import React, { useState } from "react";
 import AppContainer from "@/components/AppContainer";
 import { Colors } from "@/constants/Colors";
@@ -7,8 +14,8 @@ import AppHeader from "@/components/AppHeader";
 import { themes } from "@/constants/Consts";
 
 const AccountTabScreen = () => {
-  const [currentTheme, setCurrentTheme] = useState(
-    Appearance.getColorScheme() ?? themes.light
+  const [currentTheme, setCurrentTheme] = useState<ColorSchemeName | string>(
+    Appearance.getColorScheme()
   );
   const toggleSwitch = () => {
     const newTheme = currentTheme === themes.light ? themes.dark : themes.light;
