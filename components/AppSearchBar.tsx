@@ -1,30 +1,71 @@
-import { Pressable, StyleSheet, TextInput, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  TextInput,
+  useColorScheme,
+  View,
+} from "react-native";
 import React, { useState } from "react";
+//
 import { TabBarIcon } from "./navigation/TabBarIcon";
 import { font, heightPx, widthPx } from "@/utils/Responsive";
 import gStyles from "@/constants/Styles";
+import { Colors } from "@/constants/Colors";
 
 const AppSearchBar = () => {
+  // Const
+  const CC = Colors[useColorScheme() ?? "light"];
+  // State
   const [searchText, setSearchText] = useState("");
+  const [searchActive, setSearchActive] = useState(false);
 
+  // Function
   const onPressTouch = () => {
     // search api call
   };
 
-  return (
-    <View style={styles.container}>
+  const onLongPress = () => setSearchActive((t) => !t);
+
+  // Render
+  const renderSearchTextInput = () => {
+    return (
       <View style={styles.searchInputView}>
         <TextInput
           value={searchText}
           placeholder={"search nearby store"}
           onChangeText={(t) => setSearchText(t)}
           onSubmitEditing={onPressTouch}
-          style={styles.searchTextInput}
+          style={[styles.searchTextInput, { color: CC?.text }]}
         />
       </View>
-      <Pressable style={styles.searchTouch} onPress={onPressTouch}>
-        <TabBarIcon name={"search"} />
+    );
+  };
+
+  const renderSearchButton = () => {
+    return (
+      <Pressable
+        style={[styles.searchTouch, { backgroundColor: CC?.tint }]}
+        onPress={onPressTouch}
+        onLongPress={onLongPress}
+      >
+        <TabBarIcon name={"search"} color={CC?.background} />
       </Pressable>
+    );
+  };
+
+  // Return
+  return (
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: CC?.background,
+          borderColor: CC?.tint,
+        },
+      ]}
+    >
+      {searchActive && renderSearchTextInput()}
+      {renderSearchButton()}
     </View>
   );
 };
@@ -34,22 +75,21 @@ export default AppSearchBar;
 const styles = StyleSheet.create({
   container: {
     height: heightPx(8),
-    width: "95%",
     flexDirection: "row",
-    borderRadius: 25,
+    borderRadius: 50,
     marginVertical: widthPx(2),
+    marginHorizontal: "2.5%",
     alignSelf: "center",
-    borderWidth: 2,
-    ...gStyles.border,
     alignItems: "center",
     overflow: "hidden",
+    borderWidth: 2,
   },
   searchTouch: {
-    width: widthPx(15),
-    height: "100%",
+    borderRadius: 50,
+    height: "90%",
+    aspectRatio: 1,
+    margin: widthPx(1),
     ...gStyles.center,
-    borderLeftWidth: 2,
-    ...gStyles.border,
   },
   searchInputView: {
     flex: 1,
