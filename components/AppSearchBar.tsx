@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
     overflow: "hidden",
-    borderWidth: 2,
+    // borderWidth: 2,
   },
   searchTouch: {
     borderRadius: 50,
