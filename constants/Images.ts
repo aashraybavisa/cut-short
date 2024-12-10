@@ -1,5 +1,7 @@
+const folderPath = "../assets/images/";
+
 const Images = {
-  logo: require("../../assets/images/react-logo.png"),
+  logo: require(folderPath + "react-logo.png"),
 };
 
 export default Images;
