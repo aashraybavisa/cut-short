@@ -7,6 +7,7 @@ import {
   ColorSchemeName,
 } from "react-native";
 import React, { useState } from "react";
+//
 import AppContainer from "@/components/AppContainer";
 import { Colors } from "@/constants/Colors";
 import { isMobile } from "@/utils/Responsive";
