@@ -1,4 +1,5 @@
 import {
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -69,7 +70,8 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: "90%",
     height: "8%",
-    marginBottom: heightPx(3),
+    marginTop: heightPx(1),
+    marginBottom: Platform.OS == "ios" ? heightPx(3) : heightPx(1),
     borderRadius: 20,
     overflow: "hidden",
     // ...gStyles.shadow5,
