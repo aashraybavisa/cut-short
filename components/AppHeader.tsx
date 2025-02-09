@@ -1,4 +1,5 @@
 import {
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",
+    marginTop: StatusBar.currentHeight,
   },
   titleText: {
     fontSize: font(8),
