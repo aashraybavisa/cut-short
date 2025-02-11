@@ -25,20 +25,20 @@ const AccountTabScreen = () => {
   };
 
   const renderToggleAppearance = () => {
+    const isDark = currentTheme === "dark";
     const lightTextColor =
       currentTheme === "light"
         ? Colors[currentTheme].tabIconSelected
         : Colors[currentTheme].tabIconDefault;
-    const darkTextColor =
-      currentTheme === "dark"
-        ? Colors[currentTheme].tabIconSelected
-        : Colors[currentTheme].tabIconDefault;
+    const darkTextColor = isDark
+      ? Colors[currentTheme].tabIconSelected
+      : Colors[currentTheme].tabIconDefault;
     return (
       <View style={styles.toggleContainer}>
         <Text style={[styles.toggleText, { color: lightTextColor }]}>
           {"Light"}
         </Text>
-        <Switch onValueChange={toggleSwitch} value={currentTheme === "dark"} />
+        <Switch onValueChange={toggleSwitch} value={isDark} />
         <Text style={[styles.toggleText, { color: darkTextColor }]}>
           {"Dark"}
         </Text>
